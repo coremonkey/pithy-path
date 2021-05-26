@@ -1,0 +1,19 @@
+<div>
+    <label for="new-pithy">URL:</label>
+    <input id="new-pithy" placeholder="https://example.com/the-page..." #longUrl />
+  
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button class="add-button" (click)="add(longUrl.value); longUrl.value=''">
+      Add URL
+    </button>
+</div>
+<h2>Pithy URLs</h2>
+<p>Hover over url to see short version...</p>
+<ul class="pithys">
+    <li *ngFor="let pithy of pithys" >
+        <span title="https://pbid.io/{{pithy.shortUrl}}">{{pithy.longUrl}}</span>
+         
+    </li>    
+</ul>
+
+<app-pithy-detail [pithy]="selectedPithy"></app-pithy-detail>

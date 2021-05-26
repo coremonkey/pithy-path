@@ -1,0 +1,8 @@
+<div *ngIf="pithy">
+    <h2>{{pithy.longUrl | uppercase}} Details</h2>
+    <div><span>pithy: </span>{{pithy.shortUrl}}</div>
+    <div>
+    <label for="pithy-longUrl">URL: </label>
+    <input id="pithy-longUrl" [(ngModel)]="pithy.longUrl" placeholder="longUrl">
+    </div>
+</div>

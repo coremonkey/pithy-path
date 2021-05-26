@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mongo-db:
+    image: mongo
+    ports:
+    - "27017:27017"
+  web:
+    build: angular-app
+    ports: 
+    - "4200:80"
+    links:
+    - node-server
+  node-server:
+    build: node-app
+    ports:
+    - "3000:3000"
+    environment:
+      #Match the server name and ports for the mongo db container
+      DB_SERVER_URL: "mongodb://mongo-db:27017/pithy-path"
+
+    links:
+    - mongo-db
