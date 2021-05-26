@@ -6,6 +6,18 @@ the both live under a directory **pithy-path**
 
 * Node-app listens on port 3000 for requests and read/writes to the MongoDb.
 
+## Getting Started
+### Pre-Requisites
+You will need the following packages installed
+* Docker
+* npm
+* Node LTS
+
+### Build and run
+To Build and run the app `docker-compose up'
+open `http://localhost:4200` to use the app
+
+Beleow is summary of the process and tools used to create the apps and work on them outside Docker
 ## Building node-app
 1. `mkdir node-app`
 2. `cd node-path`
@@ -79,12 +91,9 @@ Stop any versions of the apps running in terminals and stop any mongoDb images r
 `docker-compose up`
 If you have made any changes to you need to add --build 
 # Todo
-- [x] Create Angular app from scratch
 - [ ] Improve docker Angular setup
-- [x] create docker
 - [ ] test for duplicate
 - [ ] jest
-- [x] pass enviroment to apps look at juniper notes 'Docker Command'
 - [ ] copy to clipboard next to each link
 
 # Setting up git-hub
