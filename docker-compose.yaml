@@ -7,16 +7,22 @@ services:
   web:
     build: angular-app
     ports: 
-    - "4200:80"
+    - "4200:4200"
+    volumes:
+    - ./angular-app:/app
     links:
     - node-server
+    command: npm run start
   node-server:
-    build: node-app
+    build: 
+      context: node-app
     ports:
     - "3000:3000"
     environment:
       #Match the server name and ports for the mongo db container
       DB_SERVER_URL: "mongodb://mongo-db:27017/pithy-path"
-
+    volumes:
+    - ./node-app:/code
     links:
     - mongo-db
+    command: npm run start

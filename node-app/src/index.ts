@@ -27,5 +27,5 @@ mongoose.connect(databaseURL, {
     console.log(`connected to mongoDb ${databaseURL}`)
 })
 app.listen(3000, () => {
-    console.log(`Server listening on 3000 CORS is only allowing from 'http://localhost:/4200' `)
+    console.log(`Server listening on 3000. Un waz here @12:46' `)
 })

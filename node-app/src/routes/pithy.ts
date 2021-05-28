@@ -1,10 +1,8 @@
 import express, { Request, Response } from 'express';
 import cors from "cors";
-
 import { Pithy } from "../models/pithy";
 
 const router = express.Router();
-
 
 router.get('/pithy/', cors(), async(req: Request, res: Response) => {
     const pithys = await Pithy.find({})
@@ -20,8 +18,8 @@ router.post('/pithy', async (req: Request, res: Response) => {
 })
 
 router.get('/pithy/:shortUrl', cors(), async(req: Request, res: Response) => {
+    console.log(`Parameters passed ${req.params}`)
     const pithys = await Pithy.find({})
-    console.log(`${req.params}`)
     return res.status(200).send(pithys)
 });
 

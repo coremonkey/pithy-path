@@ -1,101 +1,90 @@
 # Pithy-Path 
 
-## Creating the applications from scratch
-The application has 2 applications running in different process an Angular app and node Express both use Typescript.
-the both live under a directory **pithy-path**
+!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-* Node-app listens on port 3000 for requests and read/writes to the MongoDb.
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+This a demonstration and tutorial project of MEAN (Mongo, Express, Angular, Node.js) application. The application has the following simple function
+
+* User enters a URL
+* Is returned a shorted URL
+* A list pof previous shorted URLS listed
+
+As this is purely education and proof of concepts, it uses Docker Containers configured to allow for continuous development using container. See Docker for more details. 
+
+### Built With
+
+* [Angular](https://angular.io/)
+* [NPM](https://www.npmjs.com/get-npm)
+* [MongDb](https://www.mongodb.com/)
+* [Express] (https://expressjs.com/)
+* [Typescript](https://www.typescriptlang.org/)
+* [Docker] (https://www.typescriptlang.org/)
+* [Jest] (https://jestjs.io/)
 
 ## Getting Started
+
 ### Pre-Requisites
-You will need the following packages installed
+Most of the framework and applications are installed during the build process but you will need to have the following already installed :-
 * Docker
 * npm
-* Node LTS
+
+Depending on your OS install the latest versions before continuing 
+
 
 ### Build and run
-To Build and run the app `docker-compose up'
-open `http://localhost:4200` to use the app
 
-Beleow is summary of the process and tools used to create the apps and work on them outside Docker
-## Building node-app
-1. `mkdir node-app`
-2. `cd node-path`
-3. Create a new project `npm init`
-4. Install the packages needed `npm install typescript express body-parser mongoose cors ts-node-dev`
-4. `npm install @types/express @types/mongoose @types/cors`
-5. create as tsconfig file `npx tsc --init`
-6. `mkdir src` and cd into
-7. create a index.ts code is in this repo
-8. add the following to package.json to compile and watch .ts down to .js
-    ```
-      "scripts": {
-        "start": "ts-node-dev src/index.ts"
-        },
-    ```
+The application will build and run with the following steps 
 
-## Build the angular-app
+1. Close this repository into onto your computer
+2. in the **pithy-path** base directory run `docker-compose up`
+3. Once the initial build has completed open in [`http://localhost:4200`](`http://localhost:4200`)
 
-1. cd to the root of the project **pithy-path**
-2. Make new angular app `ng new angular-app` no routing standard CSS
-3. Test the factory template works `cd angular-app` `ng serve`
-4. copy the contents from the *angular-app\src directory* in this repo
-
-## Run the App in Development mode
-
-### Start the MongoDB
-1. Start a mongoDb docker Image `docker run --name pithy -p 27017:27017 -d mongo`
-2. To check docker images running `docker -ps`
-
-### Start the node app 
-Open a terminal
-`cd node-app`
-`npm start`
-
-You should see
-```
-> dbserver@1.0.0 start
-> ts-node-dev src/index.ts
-
-[INFO] 08:00:45 ts-node-dev ver. 1.1.6 (using ts-node ver. 9.1.1, typescript ver. 4.2.4)
-Server listening on 3000 CORS is only allowing from 'http://localhost:/4200' 
-connected to mongoDb mongodb://localhost:27017/pithy-path'
-```
-### Start the angular-app 
-Open a second terminal
-`cd angular-app`
-`ng serve`
-
-you should see
-```
-Build at: 2021-05-26T08:04:50.305Z - Hash: 5f69c8113533fb0edbbc - Time: 7239ms
-** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
-✔ Compiled successfully.
-```
-
-
-## Docker Compose
+## Docker
 The following describes the docker files included in the repo and the steps used to create the docker and how to run the docker.
 
 ### Docker setup
-**docker-compose.yam**
-* builds and runs the angular app and nginx server
-* builds and runs the node app
-* loads the mongo image
+**docker-compose.yaml**
+* builds and runs the angular app using the development server (default port 4200)
+* builds and runs the node app (default port 3000)
+* download and runs the mongo image (default port )
 
-### Running the Docker compose
-Stop any versions of the apps running in terminals and stop any mongoDb images running in the background
-`docker ps`
-`docker stop <CONTAINER-NAME>`
+## Start and stopping
+To start the server `docker-compose up` in interactive mode or `docker-compose up -d` to run it the background.
+To Stop the server `Ctrl-C` in interactive mode or `docker-compose down` 
 
-`docker-compose up`
-If you have made any changes to you need to add --build 
+Note the docker containers use volumes to the local directories. This allows you to make changes to the code without having to manually restart the server or rebuild 
+
 # Todo
-- [ ] Improve docker Angular setup
-- [ ] test for duplicate
 - [ ] jest
+- [ ] test for duplicate
+- [ ] Complete CRUD functions
 - [ ] copy to clipboard next to each link
-
-# Setting up git-hub
-
-1. add node_modules to .gitignore
+- [ ] Consider using OpenAPI aka Swagger

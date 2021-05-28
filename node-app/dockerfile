@@ -1,6 +1,15 @@
-FROM node:15 as base
-WORKDIR /src
-COPY . /src
+#FROM node:15 as base
+#WORKDIR /src
+#COPY . /src
+#RUN npm install
+#CMD ["npm", "start"]
+FROM node
+
+WORKDIR /code
+
+COPY package.json package.json
+COPY package-lock.json package-lock.json
 RUN npm install
-CMD ["npm", "start"]
-EXPOSE 3000
+
+COPY . .
+CMD [ "npm", "start"]
