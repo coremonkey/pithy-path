@@ -1,9 +1,4 @@
-#FROM node:15 as base
-#WORKDIR /src
-#COPY . /src
-#RUN npm install
-#CMD ["npm", "start"]
-FROM node
+FROM node:lts
 
 WORKDIR /code
 
