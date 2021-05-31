@@ -28,7 +28,7 @@ As this is purely education and proof of concepts, it uses Docker Containers con
 ### Pre-Requisites
 Most of the framework and applications are installed during the build process but you will need to have the following already installed :-
 * Docker
-* Node
+* Node LTS 14
 
 Depending on your OS install the latest versions before continuing 
 
