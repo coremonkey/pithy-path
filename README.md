@@ -1,32 +1,5 @@
 # Pithy-Path 
 
-!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -34,8 +7,9 @@
 This a demonstration and tutorial project of MEAN (Mongo, Express, Angular, Node.js) application. The application has the following simple function
 
 * User enters a URL
-* Is returned a shorted URL
-* A list pof previous shorted URLS listed
+* returns a shorted URL
+* Pressing copy puts the shortened URL in the clipboard 
+* A list of previous shorted URLs is listed
 
 As this is purely education and proof of concepts, it uses Docker Containers configured to allow for continuous development using container. See Docker for more details. 
 
@@ -44,17 +18,17 @@ As this is purely education and proof of concepts, it uses Docker Containers con
 * [Angular](https://angular.io/)
 * [NPM](https://www.npmjs.com/get-npm)
 * [MongDb](https://www.mongodb.com/)
-* [Express] (https://expressjs.com/)
+* [Express](https://expressjs.com/)
 * [Typescript](https://www.typescriptlang.org/)
-* [Docker] (https://www.typescriptlang.org/)
-* [Jest] (https://jestjs.io/)
+* [Docker](https://www.typescriptlang.org/)
+* [Jest](https://jestjs.io/)
 
 ## Getting Started
 
 ### Pre-Requisites
 Most of the framework and applications are installed during the build process but you will need to have the following already installed :-
 * Docker
-* npm
+* Node
 
 Depending on your OS install the latest versions before continuing 
 
@@ -82,9 +56,29 @@ To Stop the server `Ctrl-C` in interactive mode or `docker-compose down`
 
 Note the docker containers use volumes to the local directories. This allows you to make changes to the code without having to manually restart the server or rebuild 
 
-# Todo
-- [ ] jest
-- [ ] test for duplicate
-- [ ] Complete CRUD functions
-- [ ] copy to clipboard next to each link
-- [ ] Consider using OpenAPI aka Swagger
+
+## Testing the APIs
+To run the suite of tests to make sure that the server APIs and the database are connected and functioning correctly. stop the server and running this Docker compose
+`docker-compose -f docker-compose-test.yaml up`
+
+This will perform the following
+
+* Loads the mongoDb
+* loads the node-app iwiht `npm test`
+  * Runs all the Jest test suite
+```
+node-server_1  |   GET /pithys - returns a list of Pithys from the mongoDb
+node-server_1  |     ✓  GET /Pithys list all pithys (50 ms)
+node-server_1  |     ✓  POST /pithys API Request create test Record (18 ms)
+node-server_1  |     ✓  GET /pithys/shortId retrieve the test Record (4 ms)
+node-server_1  |     ✓  GET /pithys/shortId check for 404 for a shortId that doesn't exist (3 ms)
+node-server_1  | 
+node-server_1  | Test Suites: 1 passed, 1 total
+node-server_1  | Tests:       4 passed, 4 total
+node-server_1  | Snapshots:   0 total
+node-server_1  | Time:        3.95 s
+node-server_1  | Ran all test suites.
+```
+
+To Stop the server `Ctrl-C`
+

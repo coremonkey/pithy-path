@@ -4,6 +4,7 @@ import cors from "cors";
 import { json } from 'body-parser';
 
 import { pithyRouter } from "./routes/pithy";
+import { DefaultDeserializer } from "v8";
 
 // Add a list of allowed origins.
 // If you have more origins you would like to add, you can add them to the array below.
@@ -27,5 +28,6 @@ mongoose.connect(databaseURL, {
     console.log(`connected to mongoDb ${databaseURL}`)
 })
 app.listen(3000, () => {
-    console.log(`Server listening on 3000. Un waz here @12:46' `)
+    console.log(`Server listening on 3000' `)
 })
+export default app;

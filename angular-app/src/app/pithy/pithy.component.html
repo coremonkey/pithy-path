@@ -1,19 +1,22 @@
-<div>
-    <label for="new-pithy">URL:</label>
-    <input id="new-pithy" placeholder="https://example.com/the-page..." #longUrl />
-  
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button class="add-button" (click)="add(longUrl.value); longUrl.value=''">
-      Add URL
-    </button>
-</div>
-<h2>Pithy URLs</h2>
-<p>Hover over url to see short version...</p>
-<ul class="pithys">
-    <li *ngFor="let pithy of pithys" >
-        <span title="https://pbid.io/{{pithy.shortUrl}}">{{pithy.longUrl}}</span>
-         
-    </li>    
-</ul>
+<div class="content" role="main">
+  <div>
+      <div>
+        <input id="new-pithy" placeholder="https://example.com/the-page..." #longUrl />
+        <button class="add-button" (click)="add(longUrl.value)">Get URL</button>
+    </div>
+  </div>
 
-<app-pithy-detail [pithy]="selectedPithy"></app-pithy-detail>
+  <div>   
+      <input  disabled [value] = "shortUrl"  />   
+      <button [cdkCopyToClipboard]="shortUrl">Copy</button>
+    </div>
+
+  <div>
+    <table>
+      <tr *ngFor="let pithy of pithys">
+        <th>{{pithy.longUrl}}</th>
+        <th>{{pithy.shortUrl}}</th>
+      </tr>
+    </table>
+  </div>
+</div>

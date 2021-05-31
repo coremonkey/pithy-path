@@ -30,7 +30,6 @@ export class PithyService {
     };
   
     getPithys(): Observable<Pithy[]>{
-      console.log("GET called returning dummy data")
       return this.http.get<Pithy[]>(this.pithyUrl)
         .pipe(
           tap(_ => this.log('fetched pithys')),
@@ -39,16 +38,29 @@ export class PithyService {
         )
     }
 
-      
-    addPithy(pithy: Pithy) {
-      pithy.shortUrl = this.randomString(8, '0123456789abcdefghijklmnopqrstuvwxyz');
-      var findStatus = this.http.get<any>(this.pithyUrl+'/:'+pithy.shortUrl)
-      
-      this.log(`${pithy.longUrl} ${pithy.shortUrl} ${findStatus} POST to add Pithy`);
-      return this.http.post<any>(this.pithyUrl,pithy).subscribe(data => {
-        this.id = data;});
-      
+    getPithy(shortUrl: string): Observable<Pithy[]>{
+      const url = `${this.pithyUrl}/${shortUrl}`;
+      return this.http.get<Pithy[]>(url)
+        .pipe(
+          tap(_ => this.log(`fetched pithy ${shortUrl}`)),
+          catchError(this.handleError<Pithy[]>('getPithy ', []))
+
+        )
     }
+
+    selectedPithy: Pithy[] = [];
+    addPithy(pithy: Pithy) {
+      pithy.shortUrl = 'https://pbid.io/' + this.randomString(8, '0123456789abcdefghijklmnopqrstuvwxyz');
+
+      //this.getPithy(encodeURIComponent('https://pbid.io/3cbyryo0'))
+      //  .subscribe(pithy => this.selectedPithy = pithy);
+      //this.log(`longUrl returned ${this.selectedPithy}`)
+      this.http.post<any>(this.pithyUrl,pithy).subscribe(data => {
+        this.id = data;});
+      return pithy.shortUrl;
+    }
+
+
     private randomString(length: number, chars: string) {
       var result = '';
       for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
@@ -58,10 +70,8 @@ export class PithyService {
     private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
     
-        // TODO: send the error to remote logging infrastructure
         console.error(error); // log to console instead
     
-        // TODO: better job of transforming error for user consumption
         this.log(`${operation} failed: ${error.message}`);
     
         // Let the app keep running by returning an empty result.

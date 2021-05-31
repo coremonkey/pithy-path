@@ -6,16 +6,6 @@ services:
     - "27017:27017"
     logging:
       driver: none
-  web:
-    build: 
-      context: angular-app
-    ports: 
-    - "4200:4200"
-    volumes:
-    - ./angular-app:/app
-    links:
-    - node-server
-    command: npm run start
   node-server:
     build: 
       context: node-app
@@ -28,4 +18,4 @@ services:
     - ./node-app:/code
     links:
     - mongo-db
-    command: npm run start
+    command: npm run test

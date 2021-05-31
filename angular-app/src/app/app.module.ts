@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from "@angular/common/http";
+import { ClipboardModule } from '@angular/cdk/clipboard';
 //import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 //import { InMemoryDataService } from "./in-memory-data.service";
 
@@ -21,6 +22,7 @@ import { MessagesComponent } from './messages/messages.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ClipboardModule
     //dummy API server
     //HttpClientInMemoryWebApiModule.forRoot(
     //  InMemoryDataService, {dataEncapsulation: false}

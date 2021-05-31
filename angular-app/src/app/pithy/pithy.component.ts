@@ -11,7 +11,7 @@ import { MessageService } from "../message.service";
 export class PithyComponent implements OnInit {
 
   pithys: Pithy[] = [];
-  
+  shortUrl: string = '';
   constructor(
     private pithyService: PithyService,
     private messageService: MessageService) { }
@@ -34,7 +34,8 @@ export class PithyComponent implements OnInit {
     
     if (!longUrl) {return}
     
-    this.pithyService.addPithy({longUrl} as Pithy)
+    this.shortUrl = this.pithyService.addPithy({longUrl} as Pithy)
+
     this.getPithys(); //why does it take two calls to refresh the list
     this.ngOnInit();    
   }
