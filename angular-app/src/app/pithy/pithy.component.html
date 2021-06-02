@@ -13,10 +13,12 @@
 
   <div>
     <table>
-      <tr *ngFor="let pithy of pithys">
-        <th>{{pithy.longUrl}}</th>
-        <th>{{pithy.shortUrl}}</th>
-      </tr>
+      <tbody>
+        <tr *ngFor="let pithy of pithys">
+          <th>{{pithy.longUrl}}</th>
+          <th>{{pithy.shortUrl}}</th>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

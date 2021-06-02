@@ -35,11 +35,13 @@ Depending on your OS install the latest versions before continuing
 
 ### Build and run
 
-The application will build and run with the following steps 
+The application will build and run with the following steps.
 
-1. Close this repository into onto your computer
-2. in the **pithy-path** base directory run `docker-compose up`
-3. Once the initial build has completed open in [`http://localhost:4200`](`http://localhost:4200`)
+1. Clone this repository to your computer
+2. `cd node-app` and then `run npm install` 
+3. `cd ..\angular-app` and then `run npm install`
+4. in the **pithy-path** base directory run `docker-compose up`
+5. Once the initial build has completed open in [`http://localhost:4200`](`http://localhost:4200`)
 
 ## Docker
 The following describes the docker files included in the repo and the steps used to create the docker and how to run the docker.
@@ -82,3 +84,28 @@ node-server_1  | Ran all test suites.
 
 To Stop the server `Ctrl-C`
 
+## Building the package
+
+### Install node LTS
+
+On Linux 
+`curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -` 
+`sudo apt-get install -y nodejs`
+
+### Build the project
+In pithy-path\node-app
+
+Install typescript and create the project
+`npm install typescript ts-node ts-node-dev`
+`npm install @types/node@*`
+`npm init` 
+Install the packages for Express, Jest
+`npm install --save @types/cors @types/express @types/jest @types/mongoose @types/node @types/supertest`
+`npm install --save jest express nodemon supertest ts-jest ts-node ts-node-dev typescript body-parser cors mongoose`
+
+Angular App 
+in pithy-path\node-app
+
+`npm install -g @angular/cli`
+`npm install --save @angular/cdk` for clicpboard copy 
+`ng new angular-app`
